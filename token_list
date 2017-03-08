@@ -1,0 +1,14 @@
+import nltk
+from nltk.corpus import wordnet as wn
+
+
+unityL = ['unity', 'together', 'solidarity', 'confederation']
+democracyL = ['democracy', 'people', 'republic', 'state', 'freedom', 'nation']
+successL = ['success', 'innovation', 'progress', 'win', 'technology']
+immigrationL = ['migrant', 'foreigner', 'settler', 'invader']
+terrorismL = ['terror', 'terrorism', 'fear', 'islam', 'communist', 'attack', 'threat']
+warL = ['war', 'battle', 'nuclear', 'invasion', 'gun', 'weapon', 'tyranny']
+
+
+[synset.name().split('.')[0].split('_')[0] for token in unityL for synset in wn.synsets(token, 'n') ]
+
