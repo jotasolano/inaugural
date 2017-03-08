@@ -18,10 +18,13 @@ terrorismT = ['terror', 'terrorism', 'fear', 'islam', 'communist', 'attack', 'th
 warT = ['war', 'battle', 'nuclear', 'invasion', 'gun', 'weapon', 'tyranny']
 
 
+
+listOfConcepts = [unityT, democracyT, successT, immigrationT, terrorismT, warT]
+
+
 # variables for filename creation
-dir_name = '~/Desktop/'
+dir_name = '~/Desktop/concepts/'
 suffix = 'csv'
-listy = [unityT, democracyT]
 
 # the frequency finding function
 def frequencies(source, concept):
@@ -35,20 +38,9 @@ def frequencies(source, concept):
     df = pd.DataFrame(cfd)
     df.to_csv(os.path.join(dir_name, str(concept[0]) + "." + suffix))
 
-frequencies(inaugural, unityT)
-# frequencies(inaugural, democracyT)
 
 
-# cfd = nltk.ConditionalFreqDist(
-#     (target, fileid[:4])
-#     for fileid in inaugural.fileids()
-#     for w in inaugural.words(fileid)
-#     for target in [synset.name().split('.')[0].split('_')[0] for token in unityT for synset in wn.synsets(token, 'n') ]
-#     if w.lower().startswith(target))
-
-# # print(cfd.tabulate())
-
-# df = pd.DataFrame(cfd)
-# print(df.head())
-
+# lets run the function on a loop
+for item in listOfConcepts:
+    frequencies(inaugural, item)
 
