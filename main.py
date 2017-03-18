@@ -1,7 +1,4 @@
 import nltk
-# import inspect
-# import matplotlib as plot
-# from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet as wn
 from nltk.corpus import inaugural
 import numpy as np
@@ -23,7 +20,8 @@ def frequencies(source, concept):
         if w.lower().startswith(target))
         
     df = pd.DataFrame(cfd)
-    df.to_csv(os.path.join(dir_name, str(concept[0]) + "." + suffix))
+    print(df)
+    # df.to_csv(os.path.join(dir_name, str(concept[0]) + "." + suffix))
 
 
 # the 'seed' tokens for every concept
@@ -35,18 +33,30 @@ terrorismT = ['terror', 'terrorism', 'fear', 'islam', 'communist', 'attack', 'th
 warT = ['war', 'battle', 'nuclear', 'invasion', 'gun', 'weapon', 'tyranny']
 
 # the final 'words'  #this isn't working!
-unityW = ['unity', [synset.name().split('.')[0].split('_')[0] for token in unityT for synset in wn.synsets(token, 'n') ]]
-democracyW = ['democracy', [synset.name().split('.')[0].split('_')[0] for token in democracyT for synset in wn.synsets(token, 'n') ]]
-successW = ['success', [synset.name().split('.')[0].split('_')[0] for token in successT for synset in wn.synsets(token, 'n') ]]
-immigrationW = ['immigration', [synset.name().split('.')[0].split('_')[0] for token in immigrationT for synset in wn.synsets(token, 'n') ]]
-terrorismW = ['terror', [synset.name().split('.')[0].split('_')[0] for token in terrorismT for synset in wn.synsets(token, 'n') ]]
-warW = ['war', [synset.name().split('.')[0].split('_')[0] for token in warT for synset in wn.synsets(token, 'n') ]]
+unityW = [synset.name().split('.')[0].split('_')[0] for token in unityT for synset in wn.synsets(token, 'n') ]
+unityW.insert(0,"unity")
 
+democracyW = [synset.name().split('.')[0].split('_')[0] for token in democracyT for synset in wn.synsets(token, 'n') ]
+democracyW.insert(0, 'democracy')
 
-listOfWords = [unityW, democracyW, successW, immigrationW, terrorismW, warW]
+successW = [synset.name().split('.')[0].split('_')[0] for token in successT for synset in wn.synsets(token, 'n') ]
+successW.insert(0, 'success')
+
+immigrationW = [synset.name().split('.')[0].split('_')[0] for token in immigrationT for synset in wn.synsets(token, 'n') ]
+immigrationW.insert(0, 'immigration')
+
+terrorismW = [synset.name().split('.')[0].split('_')[0] for token in terrorismT for synset in wn.synsets(token, 'n') ]
+terrorismW.insert(0, 'terror')
+
+warW = [synset.name().split('.')[0].split('_')[0] for token in warT for synset in wn.synsets(token, 'n') ]
+warW.insert(0, 'war')
+
+listOfWords = [immigrationW]
+
+# listOfWords = [unityW, democracyW, successW, immigrationW, terrorismW, warW]
 
 
 # lets run the function on a loop
-# for item in listOfWords:
-#     frequencies(inaugural, item)
+for item in listOfWords:
+    frequencies(inaugural, item)
 
