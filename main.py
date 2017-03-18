@@ -16,7 +16,7 @@ def frequencies(source, concept):
         (target, fileid[:4])
         for fileid in source.fileids()
         for w in source.words(fileid)
-        for target in [synset.name().split('.')[0].split('_')[0] for token in concept for synset in wn.synsets(token, 'n') ]
+        for target in concept
         if w.lower().startswith(target))
         
     df = pd.DataFrame(cfd)
